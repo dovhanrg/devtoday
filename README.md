@@ -24,3 +24,12 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+To make a production versiont run yarn build or npm run build:
+```bash
+yarn build
+#or
+npm run build
+```
+
+### Also, you can check this app at [https://devtoday.now.sh/](https://devtoday.now.sh/)
