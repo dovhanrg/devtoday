@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
-import Layout from '../../components/MyLayout';
 import axios from 'axios';
+import Layout from '../../components/MyLayout';
+import Button from '../../components/Button';
 
 interface Props {
     type: object;
@@ -8,6 +9,7 @@ interface Props {
         type: object;
         title: string;
         body: string;
+        id: number;
     };
 }
 
@@ -24,11 +26,16 @@ interface Context {
 }
 
 const Post: Post = (props: Props) => {
+    const handleDeleteClick = (): void => {
+        const { id } = props.post;
+        axios.delete(`https://simple-blog-api.crew.red/posts/${id}`);
+    };
     const { post } = props;
     return (
         <Layout>
             <h1>{post.title}</h1>
             <p>{post.body}</p>
+            <Button onClick={handleDeleteClick}>delete</Button>
         </Layout>
     );
 };
