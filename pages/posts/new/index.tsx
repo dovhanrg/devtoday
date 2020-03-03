@@ -1,19 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable require-jsdoc */
 import axios from 'axios';
-import Layout from '../../../components/MyLayout';
 import styled from 'styled-components';
 import React from 'react';
-
-const Button = styled.button`
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
-    border-radius: 3px;
-    border: 2px solid palevioletred;
-    color: palevioletred;
-    cursor: pointer;
-`;
+import Layout from '../../../components/MyLayout';
+import Form from '../../../components/Form';
+import InputText from '../../../components/InputText';
+import Textarea from '../../../components/Textarea';
+import Button from '../../../components/Button';
 
 interface SendPost {
     title: object | string | undefined;
@@ -46,14 +40,14 @@ const newPost = (): object => {
             body,
         };
         sendPost(post);
-        if (refBody.current) refBody.current.value = '';
-        if (refTitle.current) refTitle.current.value = '';
+        if (refBody.current !== null) refBody.current.value = '';
+        if (refTitle.current !== null) refTitle.current.value = '';
     }
 
     return (
         <Layout>
             <h1>Create new post</h1>
-            <form
+            <Form
                 action=""
                 method="post"
                 onSubmit={(e): void => {
@@ -63,7 +57,7 @@ const newPost = (): object => {
                 <label htmlFor="title">
                     Post Title
                     <br />
-                    <input
+                    <InputText
                         ref={refTitle}
                         type="text"
                         name="title"
@@ -76,7 +70,7 @@ const newPost = (): object => {
                 <label htmlFor="body">
                     Post body
                     <br />
-                    <textarea
+                    <Textarea
                         ref={refBody}
                         name="body"
                         onChange={(e): void => {
@@ -86,7 +80,7 @@ const newPost = (): object => {
                 </label>
                 <br />
                 <Button type="submit">submit</Button>
-            </form>
+            </Form>
         </Layout>
     );
 };
