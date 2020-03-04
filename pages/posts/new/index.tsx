@@ -1,7 +1,5 @@
-/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable require-jsdoc */
 import axios from 'axios';
-import styled from 'styled-components';
 import React from 'react';
 import Layout from '../../../components/MyLayout';
 import Form from '../../../components/Form';
