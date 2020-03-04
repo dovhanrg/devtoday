@@ -1,15 +1,15 @@
 /* eslint-disable react/react-in-jsx-scope */
 import axios from 'axios';
+import { useState } from 'react';
 import Layout from '../../components/MyLayout';
 import Button from '../../components/Button';
 
 interface Props {
     type: object;
     post: {
-        type: object;
         title: string;
         body: string;
-        id: number;
+        id?: number;
     };
 }
 
@@ -26,16 +26,21 @@ interface Context {
 }
 
 const Post: Post = (props: Props) => {
+    const [isNotDeleted, setDeleted] = useState(true);
+    const [post, setPost] = useState(props.post);
+    const { id } = props.post;
     const handleDeleteClick = (): void => {
-        const { id } = props.post;
-        axios.delete(`https://simple-blog-api.crew.red/posts/${id}`);
+        if (isNotDeleted) {
+            axios.delete(`https://simple-blog-api.crew.red/posts/${id}`);
+            setDeleted(false);
+            setPost({ title: '', body: 'Post has been deleted.', id: post.id });
+        }
     };
-    const { post } = props;
     return (
         <Layout>
             <h1>{post.title}</h1>
             <p>{post.body}</p>
-            <Button onClick={handleDeleteClick}>delete</Button>
+            <Button onClick={handleDeleteClick}>Delete Post</Button>
         </Layout>
     );
 };
